@@ -20,6 +20,7 @@ messages = chat["messages"]
 dialog_stack = []
 dialogs = []
 
+
 for message in messages:
     if(len(dialog_stack) == 0):
         dialog_stack.append(message)
