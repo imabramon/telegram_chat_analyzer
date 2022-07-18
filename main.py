@@ -19,7 +19,7 @@ messages = chat["messages"]
 
 dialog_stack = []
 dialogs = []
-
+dialog_id_counter = 0
 
 for message in messages:
     if(len(dialog_stack) == 0):
@@ -32,15 +32,18 @@ for message in messages:
         dialog_stack.append(message)
     else:
         dialog = {
+            'id': dialog_id_counter,
             'start_msg_id': dialog_stack[0]["id"],
             'end_msg_id': dialog_stack[len(dialog_stack)-1]["id"]
         }
         dialogs.append(dialog)
         dialog_stack.clear()
         dialog_stack.append(message)
+        inc(dialog_id_counter)
 
 if(len(dialog_stack) != 0):
     dialog = {
+            'id': dialog_id_counter,
             'start_msg_id': dialog_stack[0]["id"],
             'end_msg_id': dialog_stack[len(dialog_stack)-1]["id"]
         }
